@@ -1,0 +1,10 @@
+tree
+rain
+train
+heavy
+book
+school
+cookie
+zoo
+mountain
+coat
