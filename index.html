@@ -26,34 +26,68 @@
       rel="stylesheet" />
   </head>
   <body>
+    <div class="py-0 mb-0">
+      <header
+        class="bd-header bg-dark py-1 d-flex align-items-stretch border-bottom border-dark">
+        <div class="container-fluid d-flex align-items-center">
+          <h4 class="d-flex align-items-center fs-6 text-white mb-0">
+            Englist Helper
+          </h4>
+        </div>
+      </header>
+    </div>
     <div class="row">
       <div
         class="d-flex p-4 gap-4 py-md-4 align-items-center justify-content-center"
         id="content">
-        <ul class="w-280px list-group">
+        <ul
+          class="w-280px list-group"
+          id="lesson-list">
           <li
             class="list-group-item active"
             aria-current="true">
             Lessons
-          </li>
-          <li class="list-group-item">
-            <a
-              class="page-link"
-              href="3A-136a.html">
-              3A-136a
-            </a>
-          </li>
-          <li class="list-group-item">
-            <a
-              class="page-link"
-              href="3A-141a.html">
-              3A-141a
-            </a>
           </li>
         </ul>
       </div>
     </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.ajax({
+          url: "lesson_list.txt?v=" + Math.random(), // Replace with the actual path to your text file
+          dataType: "text",
+          success: function (data) {
+            var temp_lessons = data.split("\n");
+            temp_lessons = temp_lessons.map(function (line) {
+              return line.trim();
+            });
+
+            const lessonElements = $("#lesson-list");
+
+            $.each(temp_lessons, function (key, value) {
+              var newLiElement = $("<li>", {
+                class: "list-group-item",
+                html:
+                  '<a class="page-link" href="lesson.html?lesson_id=' +
+                  value +
+                  '">' +
+                  (key + 1) +
+                  ". " +
+                  value +
+                  "</a>",
+              });
+
+              lessonElements.append(newLiElement);
+            });
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.log("Error:", textStatus, errorThrown);
+          },
+        });
+      });
+    </script>
   </body>
 </html>

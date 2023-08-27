@@ -199,8 +199,10 @@
       var WORD_TEMP_COUNT = 1;
 
       $(document).ready(function () {
+        var lesson_id = getUrlVars()["lesson_id"];
+
         $.ajax({
-          url: "words/3A-141a.txt?v=" + Math.random(), // Replace with the actual path to your text file
+          url: "words/" + lesson_id + ".txt?v=" + Math.random(), // Replace with the actual path to your text file
           dataType: "text",
           success: function (data) {
             var temp_words = data.split("\n");
@@ -465,6 +467,20 @@
 
           $("#WORD_ID-" + word_id).html("");
         }, 1500);
+      }
+
+      function getUrlVars() {
+        var vars = [],
+          hash;
+        var hashes = window.location.href
+          .slice(window.location.href.indexOf("?") + 1)
+          .split("&");
+        for (var i = 0; i < hashes.length; i++) {
+          hash = hashes[i].split("=");
+          vars.push(hash[0]);
+          vars[hash[0]] = hash[1];
+        }
+        return vars;
       }
     </script>
   </body>
