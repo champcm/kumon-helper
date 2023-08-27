@@ -143,9 +143,13 @@
       class="d-flex flex-column flex-wrap flex-md-row p-2 gap-4 py-md-2 align-items-center justify-content-center"
       id="content"></div>
     <div
-      class="d-flex flex-column flex-wrap flex-md-row p-4 gap-4 py-md-2 align-items-center justify-content-center"
-      id="hidden-content"
-      style="margin-top: 500px"></div>
+      id="result-content"
+      style="display: none">
+      <div
+        class="d-flex flex-column flex-wrap flex-md-row p-4 gap-4 py-md-2 align-items-center justify-content-center"
+        id="hidden-content"
+        style="margin-top: 500px"></div>
+    </div>
 
     <div
       id="myModal"
@@ -359,6 +363,7 @@
           $("#score").text(_CURRENT_SCORE);
 
           if (_CLICKING_COUNT >= _MAX_COUNT_CHECK) {
+            $("#result-content").show();
             showScore();
           } else {
             // if (_CLICKING_COUNT >= _PAGE_LOAD_COUNT * WORD_PER_PAGE) {
@@ -395,6 +400,7 @@
           _CLICKING_COUNT++;
 
           if (_CLICKING_COUNT >= _MAX_COUNT_CHECK) {
+            $("#result-content").show();
             showScore();
           } else {
             // if (_CLICKING_COUNT >= _PAGE_LOAD_COUNT * WORD_PER_PAGE) {
