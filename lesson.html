@@ -201,26 +201,30 @@
       $(document).ready(function () {
         var lesson_id = getUrlVars()["lesson_id"];
 
-        $.ajax({
-          url: "words/" + lesson_id + ".txt?v=" + Math.random(), // Replace with the actual path to your text file
-          dataType: "text",
-          success: function (data) {
-            var temp_words = data.split("\n");
-            temp_words = temp_words.map(function (line) {
-              return line.trim();
-            });
+        if (typeof lesson_id !== "undefined") {
+          $.ajax({
+            url: "words/" + lesson_id + ".txt?v=" + Math.random(), // Replace with the actual path to your text file
+            dataType: "text",
+            success: function (data) {
+              var temp_words = data.split("\n");
+              temp_words = temp_words.map(function (line) {
+                return line.trim();
+              });
 
-            WORDS = temp_words;
-            WORDS_LENGTH = WORDS.length;
-            _MAX_COUNT_CHECK = _MAX_COUNT_TIME * WORDS_LENGTH * _REPEAT_WORD;
-            WORD_PER_PAGE = WORDS_LENGTH * _REPEAT_WORD;
+              WORDS = temp_words;
+              WORDS_LENGTH = WORDS.length;
+              _MAX_COUNT_CHECK = _MAX_COUNT_TIME * WORDS_LENGTH * _REPEAT_WORD;
+              WORD_PER_PAGE = WORDS_LENGTH * _REPEAT_WORD;
 
-            getQuestion();
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.log("Error:", textStatus, errorThrown);
-          },
-        });
+              getQuestion();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log("Error:", textStatus, errorThrown);
+            },
+          });
+        } else {
+          window.location = "index.html";
+        }
       });
 
       function getQuestion() {
