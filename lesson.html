@@ -206,6 +206,7 @@
         var lesson_id = getUrlVars()["lesson_id"];
 
         if (typeof lesson_id !== "undefined") {
+          lesson_id = lesson_id.replaceAll("#", "");
           $.ajax({
             url: "words/" + lesson_id + ".txt?v=" + Math.random(), // Replace with the actual path to your text file
             dataType: "text",
