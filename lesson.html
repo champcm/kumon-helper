@@ -202,11 +202,13 @@
       var WORDS_LENGTH = 0;
       var WORD_TEMP_COUNT = 1;
 
+      var LESSON_ID = "";
+
       $(document).ready(function () {
         var lesson_id = getUrlVars()["lesson_id"];
 
         if (typeof lesson_id !== "undefined") {
-          lesson_id = lesson_id.replaceAll("#", "");
+          LESSON_ID = lesson_id.replaceAll("#", "");
           $.ajax({
             url: "words/" + lesson_id + ".txt?v=" + Math.random(), // Replace with the actual path to your text file
             dataType: "text",
@@ -261,6 +263,7 @@
                   word + ".png?v=" + Math.random()
                 );
                 new_page = new_page.replaceAll("_WORD_DISPLAY_ID", WORD_ID + 1);
+                new_page = new_page.replaceAll("_LESSON_ID", LESSON_ID);
                 new_page = new_page.replaceAll("_WORD_ID", WORD_ID);
                 new_page = new_page.replace("_RESULT", "_RESULT_" + WORD_ID);
 
