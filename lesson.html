@@ -105,7 +105,7 @@
       href="css/dropdowns.css"
       rel="stylesheet" />
   </head>
-  <body>
+  <body id="main-body">
     <div class="py-0 mb-0">
       <header
         class="bd-header bg-dark py-1 d-flex align-items-stretch border-bottom border-dark">
@@ -182,6 +182,8 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+
     <script>
       const myModalAlternative = new bootstrap.Modal("#myModal", {});
       var _MAX_COUNT_TIME = 1;
@@ -203,6 +205,17 @@
       var WORD_TEMP_COUNT = 1;
 
       var LESSON_ID = "";
+
+      function doCheer() {
+        for (var i = 0; i <= 10; ++i)
+          setTimeout(function () {
+            party.confetti(document.getElementById("main-body"), {
+              count: party.variation.range(20, 40),
+              size: party.variation.range(0.8, 1.2),
+              // ... and more!
+            });
+          }, (Math.random() * 500 + 500) * i);
+      }
 
       $(document).ready(function () {
         var lesson_id = getUrlVars()["lesson_id"];
@@ -455,6 +468,8 @@
             '% <span class="text-danger">❌ FAIL</span></span>'
           );
         } else {
+          doCheer();
+
           return (
             '<span class="display-3">' +
             percent +
