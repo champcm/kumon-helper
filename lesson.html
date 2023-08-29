@@ -182,7 +182,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
+    <script src="js/jquery.confetti.js"></script>
 
     <script>
       const myModalAlternative = new bootstrap.Modal("#myModal", {});
@@ -207,14 +207,12 @@
       var LESSON_ID = "";
 
       function doCheer() {
-        for (var i = 0; i <= 10; ++i)
-          setTimeout(function () {
-            party.confetti(document.getElementById("main-body"), {
-              count: party.variation.range(20, 40),
-              size: party.variation.range(0.8, 1.2),
-              // ... and more!
-            });
-          }, (Math.random() * 500 + 500) * i);
+        $("#confettiCanvas").css({ "z-index": "5000" });
+        $.confetti.start();
+        setTimeout(function () {
+          $("#confettiCanvas").css({ "z-index": "1" });
+          $.confetti.stop();
+        }, 10000);
       }
 
       $(document).ready(function () {
