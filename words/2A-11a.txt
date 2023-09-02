@@ -1,0 +1,6 @@
+cap
+bird
+shirt
+pen
+red
+blue
