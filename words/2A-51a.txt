@@ -1,0 +1,6 @@
+heavy
+bag
+box
+table
+rock
+light
