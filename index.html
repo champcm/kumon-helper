@@ -79,7 +79,9 @@
                   (key + 1) +
                   ". " +
                   value +
-                  (value == "2A-51a" ? '<img src="new.gif" />' : "") +
+                  (value == "2A-51a" || value == "2A-61a"
+                    ? '<img src="new.gif" />'
+                    : "") +
                   "</a>",
               });
 

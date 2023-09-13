@@ -1,0 +1,6 @@
+tree
+girl
+boy
+glass
+short
+tall
